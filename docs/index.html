@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B1B2B" />
+  <meta name="description" content="新生百科：重庆大学新生的学习生活 AI 顾问。读官方资料，答案带出处，资料里没有就拒答。" />
+  <title>新生百科 · 重大学习生活 AI 顾问</title>
+  <style>
+    :root {
+      --ink: #0B1B2B;
+      --ink-2: #26384D;
+      --muted: #64748B;
+      --bg: #F6F8FB;
+      --card: #FFFFFF;
+      --green: #0E7C66;
+      --green-2: #16B88A;
+      --green-soft: #E7F6F1;
+      --orange: #FF8A3D;
+      --orange-soft: #FFF1E6;
+      --line: #E2E8F0;
+      --navy: #0A1A2F;
+      --shadow: 0 18px 50px rgba(11, 27, 43, .10);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    img, svg { max-width: 100%; }
+
+    .wrap { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+
+    /* ---------- 顶部导航 ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(246, 248, 251, .82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226, 232, 240, .8);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; height: 68px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 11px;
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      display: grid; place-items: center; color: #fff; font-size: 18px;
+      box-shadow: 0 8px 18px rgba(14, 124, 102, .25);
+    }
+    .brand small { display: block; font-weight: 600; color: var(--muted); font-size: 11px; letter-spacing: .4px; }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--ink-2); font-size: 14px; }
+    .nav-links a { opacity: .78; transition: .2s; }
+    .nav-links a:hover { opacity: 1; color: var(--green); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 0; border-radius: 999px; padding: 12px 20px;
+      font-weight: 700; font-size: 14px; transition: transform .2s, box-shadow .2s, background .2s;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      color: #fff; background: linear-gradient(135deg, var(--green), var(--green-2));
+      box-shadow: 0 10px 24px rgba(14, 124, 102, .28);
+    }
+    .btn-primary:hover { box-shadow: 0 14px 30px rgba(14, 124, 102, .36); }
+    .btn-ghost {
+      color: var(--ink); background: #fff; border: 1px solid var(--line);
+      box-shadow: 0 6px 18px rgba(11, 27, 43, .05);
+    }
+    .btn-ghost:hover { border-color: #C9D7E4; }
+    .nav .btn { padding: 10px 18px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 72px 0 56px;
+      background:
+        radial-gradient(900px 420px at 84% 0%, rgba(22, 184, 138, .16), transparent 62%),
+        radial-gradient(700px 380px at 8% 20%, rgba(255, 138, 61, .10), transparent 60%);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(11,27,43,.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(11,27,43,.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 78%);
+    }
+    .hero-grid {
+      position: relative; display: grid; grid-template-columns: 1.08fr .92fr;
+      gap: 56px; align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--green); background: var(--green-soft);
+      border: 1px solid rgba(14, 124, 102, .12);
+      padding: 7px 13px; border-radius: 999px;
+      font-size: 12.5px; font-weight: 700; letter-spacing: .2px;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-2); box-shadow: 0 0 0 4px rgba(22,184,138,.14); }
+    h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(34px, 4.6vw, 58px);
+      line-height: 1.14; letter-spacing: -1.2px; font-weight: 850;
+    }
+    h1 span {
+      background: linear-gradient(120deg, var(--green) 10%, var(--green-2) 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lede { margin: 0 0 28px; color: var(--ink-2); font-size: 17px; max-width: 610px; }
+    .lede b { color: var(--ink); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .hero-actions .note { color: var(--muted); font-size: 12.5px; }
+    .stats {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px; margin-top: 34px; max-width: 620px;
+    }
+    .stat {
+      background: rgba(255,255,255,.72); border: 1px solid rgba(226,232,240,.9);
+      border-radius: 14px; padding: 13px 14px; backdrop-filter: blur(8px);
+    }
+    .stat b { display: block; font-size: 19px; letter-spacing: -.3px; }
+    .stat span { display: block; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+    .demo-note { margin: 10px 0 0; color: var(--muted); font-size: 11.5px; }
+
+    /* ---------- 手机示意 ---------- */
+    .phone-wrap { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .phone-wrap::before {
+      content: ""; position: absolute; width: 78%; aspect-ratio: 1;
+      border-radius: 50%; top: 8%; left: 11%;
+      background: radial-gradient(circle, rgba(22,184,138,.22), transparent 66%);
+      filter: blur(18px);
+    }
+    .phone {
+      position: relative; width: min(342px, 88%); border-radius: 42px;
+      background: #0B1B2B; padding: 9px;
+      box-shadow: 0 34px 80px rgba(11,27,43,.28), 0 0 0 1px rgba(255,255,255,.12) inset;
+      transform: rotate(1.2deg);
+    }
+    .phone-screen {
+      background: #F8FAFC; border-radius: 34px; overflow: hidden;
+      min-height: 560px; display: flex; flex-direction: column;
+    }
+    .phone-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 17px 10px; background: #fff; border-bottom: 1px solid #EEF2F6;
+    }
+    .phone-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 12.5px; }
+    .phone-brand i {
+      width: 22px; height: 22px; border-radius: 7px; display: grid; place-items: center;
+      color: #fff; background: linear-gradient(135deg, var(--green), var(--green-2));
+      font-style: normal; font-size: 11px;
+    }
+    .phone-live { display: flex; align-items: center; gap: 5px; color: var(--green); font-size: 10.5px; font-weight: 700; }
+    .phone-live .dot { width: 5px; height: 5px; box-shadow: none; }
+    .chat { padding: 16px 13px 12px; flex: 1; display: flex; flex-direction: column; gap: 11px; background: #F8FAFC; }
+    .bubble { max-width: 89%; padding: 10px 12px; border-radius: 14px; font-size: 12.5px; line-height: 1.6; }
+    .bubble.user { align-self: flex-end; background: var(--green); color: #fff; border-bottom-right-radius: 5px; }
+    .bubble.bot { align-self: flex-start; background: #fff; border: 1px solid #E7EDF3; border-bottom-left-radius: 5px; box-shadow: 0 4px 12px rgba(11,27,43,.04); }
+    .bubble.bot b { color: var(--green); }
+    .bubble.bot .sub { color: var(--muted); font-size: 11px; display: block; margin-top: 4px; }
+    .sources {
+      margin-top: 8px; display: inline-flex; align-items: center; gap: 5px;
+      background: var(--green-soft); color: var(--green);
+      border-radius: 7px; padding: 5px 8px; font-size: 10.5px; font-weight: 700;
+    }
+    .bubble.bot.refusal { background: #FFF8F1; border-color: #FFE1C7; }
+    .bubble.bot.refusal b { color: #C2410C; }
+    .phone-input {
+      margin: 0 11px 12px; padding: 10px 12px; border-radius: 999px;
+      background: #fff; border: 1px solid #E7EDF3; color: #94A3B8;
+      font-size: 11.5px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .phone-input span:last-child {
+      width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: #fff;
+      display: grid; place-items: center; font-size: 12px;
+    }
+    .phone-caption { text-align: center; color: var(--muted); font-size: 11.5px; margin: 14px 0 0; }
+
+    /* ---------- 通用 section ---------- */
+    section { scroll-margin-top: 84px; }
+    .section { padding: 74px 0; }
+    .section.alt { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .section-head { max-width: 760px; margin-bottom: 34px; }
+    .kicker {
+      color: var(--green); font-weight: 800; font-size: 12px;
+      letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    h2 { margin: 0 0 12px; font-size: clamp(26px, 3.3vw, 38px); line-height: 1.22; letter-spacing: -.7px; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 15.5px; max-width: 680px; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; box-shadow: 0 8px 28px rgba(11,27,43,.045);
+      transition: transform .22s, box-shadow .22s, border-color .22s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: #D3DFEA; }
+    .icon {
+      width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center;
+      background: var(--green-soft); color: var(--green); font-size: 20px; margin-bottom: 16px;
+    }
+    .icon.orange { background: var(--orange-soft); color: #C2410C; }
+    .card h3 { margin: 0 0 8px; font-size: 18px; letter-spacing: -.2px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .card .q { margin-top: 12px; padding: 10px 12px; background: #F8FAFC; border-radius: 10px; color: var(--ink-2); font-size: 12.5px; font-weight: 600; }
+    .badge-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 8px; background: var(--ink); color: #fff;
+      font-size: 12px; font-weight: 800; margin-bottom: 14px;
+    }
+
+    /* ---------- 可信 ---------- */
+    .trust { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .trust .card { padding: 20px; }
+    .trust .card h3 { font-size: 15.5px; }
+    .trust .card p { font-size: 12.5px; }
+
+    /* ---------- 流程图 ---------- */
+    .flow {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
+      align-items: stretch; margin-top: 8px;
+    }
+    .flow-step {
+      position: relative; background: #fff; border: 1px solid var(--line);
+      border-radius: 16px; padding: 20px 18px;
+    }
+    .flow-step:not(:last-child)::after {
+      content: "→"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%);
+      color: #A8B7C7; font-weight: 800;
+    }
+    .flow-step b { display: block; font-size: 14px; margin-bottom: 5px; }
+    .flow-step span { display: block; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .flow-step .n { color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+
+    /* ---------- 数据 ---------- */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+    .panel { background: var(--ink); color: #fff; border-radius: var(--radius); padding: 28px; overflow: hidden; position: relative; }
+    .panel::after {
+      content: ""; position: absolute; width: 280px; height: 280px; right: -80px; top: -100px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(22,184,138,.35), transparent 66%);
+    }
+    .panel h3 { position: relative; margin: 0 0 6px; font-size: 20px; }
+    .panel p { position: relative; margin: 0 0 20px; color: #B9C7D6; font-size: 13px; }
+    .panel .data-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .panel .data { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.10); border-radius: 13px; padding: 13px 14px; }
+    .panel .data b { display: block; font-size: 22px; letter-spacing: -.4px; }
+    .panel .data span { display: block; color: #AFC0D1; font-size: 11.5px; margin-top: 2px; }
+    .panel .fine { position: relative; margin: 14px 0 0; color: #8FA3B8; font-size: 11px; }
+    .privacy-card { background: #fff; }
+    .privacy-card .list { display: grid; gap: 10px; margin-top: 14px; }
+    .privacy-card .list div { display: flex; gap: 9px; color: var(--ink-2); font-size: 13px; }
+    .privacy-card .list i { color: var(--green); font-style: normal; font-weight: 800; }
+
+    /* ---------- 视频 ---------- */
+    .video-shell {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      background: linear-gradient(135deg, #0B1B2B, #12283E);
+      min-height: 330px; display: grid; place-items: center; color: #fff;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .video-shell video { display: block; width: 100%; max-height: 560px; background: #000; }
+    .video-placeholder { text-align: center; padding: 34px; }
+    .play {
+      width: 74px; height: 74px; border-radius: 50%; border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12); color: #fff; font-size: 26px;
+      display: grid; place-items: center; margin: 0 auto 16px;
+      transition: .2s; backdrop-filter: blur(8px);
+    }
+    .play:hover { transform: scale(1.05); background: rgba(255,255,255,.2); }
+    .video-placeholder b { display: block; font-size: 18px; }
+    .video-placeholder small { display: block; color: #AFC0D1; margin-top: 7px; font-size: 12px; }
+    .video-link {
+      display: inline-flex; margin-top: 18px; padding: 11px 18px; border-radius: 999px;
+      background: var(--green); color: #fff; font-weight: 700; font-size: 13px;
+    }
+    .demo-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .demo-points div { background: #fff; border: 1px solid var(--line); border-radius: 13px; padding: 14px 15px; font-size: 12.5px; color: var(--ink-2); }
+    .demo-points b { display: block; color: var(--green); font-size: 11px; letter-spacing: .6px; margin-bottom: 4px; }
+
+    /* ---------- 结尾 CTA ---------- */
+    .cta {
+      position: relative; overflow: hidden; border-radius: 28px; padding: 44px;
+      background: linear-gradient(120deg, #0B1B2B 0%, #0F3B38 55%, #0E7C66 100%);
+      color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 30px;
+    }
+    .cta::after {
+      content: ""; position: absolute; width: 360px; height: 360px; right: -110px; top: -130px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(255,138,61,.28), transparent 66%);
+    }
+    .cta h2 { position: relative; margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); }
+    .cta p { position: relative; margin: 0; color: #C7D6E4; font-size: 14px; }
+    .cta .actions { position: relative; display: flex; gap: 10px; flex-wrap: wrap; }
+    .cta .btn-ghost { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; }
+    .cta .btn-ghost:hover { background: rgba(255,255,255,.14); }
+
+    /* ---------- Footer ---------- */
+    footer { padding: 34px 0 44px; color: var(--muted); font-size: 12.5px; }
+    .footer-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-inner b { color: var(--ink); }
+    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .footer-links a, .footer-links button { color: var(--muted); background: none; border: 0; padding: 0; font-size: 12.5px; }
+    .footer-links a:hover, .footer-links button:hover { color: var(--green); }
+
+    /* ---------- Toast / 移动端 CTA ---------- */
+    .toast {
+      position: fixed; left: 50%; bottom: 88px; transform: translate(-50%, 12px);
+      background: var(--ink); color: #fff; padding: 11px 16px; border-radius: 999px;
+      font-size: 12.5px; opacity: 0; pointer-events: none; transition: .25s; z-index: 80;
+      box-shadow: 0 10px 30px rgba(11,27,43,.25); max-width: calc(100vw - 32px); text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .mobile-cta { display: none; }
+
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+      .hero { padding-top: 48px; }
+      .phone { transform: none; }
+      .grid-4, .trust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow-step:not(:last-child)::after { display: none; }
+      .split { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(var(--max), calc(100% - 32px)); }
+      .nav-links { display: none; }
+      .nav-inner { height: 62px; }
+      .nav .btn { padding: 9px 14px; font-size: 12.5px; }
+      .hero { padding: 38px 0 42px; }
+      h1 { letter-spacing: -.7px; }
+      .lede { font-size: 15px; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 24px; }
+      .stat { padding: 11px 12px; }
+      .stat b { font-size: 17px; }
+      .phone { width: min(310px, 92%); }
+      .phone-screen { min-height: 500px; }
+      .section { padding: 52px 0; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .trust { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; }
+      .demo-points { grid-template-columns: 1fr; }
+      .cta { padding: 30px 24px; flex-direction: column; align-items: flex-start; }
+      .mobile-cta {
+        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+        background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+        border-top: 1px solid var(--line); padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        gap: 9px;
+      }
+      .mobile-cta .btn { flex: 1; padding: 12px 10px; font-size: 13px; }
+      body { padding-bottom: 74px; }
+      .toast { bottom: 86px; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================================
+       部署前只需要改下面 CONFIG 里的 3 个链接：
+       1) appUrl   = 公开的 Streamlit 在线体验地址
+       2) videoUrl = 60 秒视频地址（本地 video/demo.mp4 或外部链接）
+       3) repoUrl  = GitHub 仓库地址
+       其余内容一般不用改。
+       ============================================================ -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="新生百科首页">
+        <span class="brand-mark" aria-hidden="true">新</span>
+        <span>新生百科<small>重大学习生活 AI 顾问</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#problem">解决什么问题</a>
+        <a href="#scenes">三个场景</a>
+        <a href="#trust">为什么可信</a>
+        <a href="#demo">60 秒演示</a>
+      </div>
+      <button class="btn btn-primary" type="button" data-app>在线体验 <span aria-hidden="true">↗</span></button>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> 重庆大学 AI 开学季 · 大一新生赛道 · H5 / Web 应用</span>
+          <h1>把上百份官方资料，<br />变成一个<span>会认出处的 AI 学业顾问</span></h1>
+          <p class="lede">
+            新生百科读学生手册、培养方案、转专业细则；
+            <b>每个回答标出来源</b>，资料里没有的，它会直接说“没有”。
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-app>立即体验 <span aria-hidden="true">↗</span></button>
+            <button class="btn btn-ghost" type="button" data-video>看 60 秒演示 <span aria-hidden="true">▶</span></button>
+            <span class="note">手机 / 电脑都能用</span>
+          </div>
+          <div class="stats" aria-label="项目数据">
+            <div class="stat"><b>136 份</b><span>完整版官方资料</span></div>
+            <div class="stat"><b>3412 块</b><span>知识库切块</span></div>
+            <div class="stat"><b>7 个</b><span>源码文件</span></div>
+            <div class="stat"><b>0 显卡</b><span>不训练模型</span></div>
+          </div>
+          <p class="demo-note">公开演示版：117 份公开官方资料 / 3018 个知识块 · 已脱敏</p>
+        </div>
+
+        <div class="phone-wrap">
+          <div class="phone" aria-label="产品界面示意">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <div class="phone-brand"><i>新</i> 新生百科</div>
+                <div class="phone-live"><span class="dot"></span> 示例界面</div>
+              </div>
+              <div class="chat">
+                <div class="bubble user">转专业需要什么条件？</div>
+                <div class="bubble bot">
+                  <b>先满足这些基本条件：</b><br />
+                  1. 有本校学籍，在校期间未受过处分；<br />
+                  2. 在原专业学习超过一学期；<br />
+                  3. 只能申请填报一个专业。
+                  <span class="sources">📎 依据：《重庆大学本科学生手册》第 12–13 条</span>
+                </div>
+                <div class="bubble user">宿舍能不能养猫？</div>
+                <div class="bubble bot refusal">
+                  <b>资料里没有这方面的信息。</b><br />
+                  建议问辅导员，或查看学校官方最新通知。
+                  <span class="sub">没有资料依据，就不编。</span>
+                </div>
+              </div>
+              <div class="phone-input"><span>问点什么，比如：转专业…</span><span>↑</span></div>
+            </div>
+          </div>
+          <p class="phone-caption">界面示意 · 实际以在线体验为准</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="problem">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">The Problem</div>
+          <h2>信息都在，但没有人知道该翻哪一份</h2>
+          <p>新生最大的困难不是“没有信息”，而是信息散在几十份培养方案、几百页学生手册和每个学院各一份的转专业细则里。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">🔎</div>
+            <h3>找不到原文</h3>
+            <p>“转专业要什么条件？” 答案可能在学生手册，也可能在某个学院的细则里。</p>
+            <div class="q">问学长学姐 → 得到的是经验，不是原文</div>
+          </article>
+          <article class="card">
+            <div class="icon orange">⚠️</div>
+            <h3>通用大模型会编</h3>
+            <p>它不知道重庆大学的具体规定，却会用“一般大学都这样”来回答。</p>
+            <div class="q">日期、金额、电话，都是幻觉重灾区</div>
+          </article>
+          <article class="card">
+            <div class="icon">⏳</div>
+            <h3>资料还会过期</h3>
+            <p>2025 年的转专业细则，对 2026 级很可能已经变了；可怕的是模型不知道它过期。</p>
+            <div class="q">旧版规则 + 不提醒 = 更危险</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="scenes">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Three Scenarios</div>
+          <h2>三个最容易被问到的场景</h2>
+          <p>不是“万能聊天”，而是把新生真正要办的事，变成能查、能核对、能执行的回答。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="badge-num">01</span>
+            <h3>转专业</h3>
+            <p>条件、时间线、能填几个志愿、目标学院细则，一次讲清，并标出原文位置。</p>
+            <div class="q">“转专业能填几个志愿？” → 只允许填报一个专业</div>
+          </article>
+          <article class="card">
+            <span class="badge-num">02</span>
+            <h3>报到 / 宿舍</h3>
+            <p>军训准备、宿舍床尺寸、校园卡、选课通知——多格式资料也能被读成能回答的句子。</p>
+            <div class="q">“虎溪校区宿舍床多大？” → 直接给尺寸表</div>
+          </article>
+          <article class="card">
+            <span class="badge-num">03</span>
+            <h3>不知道就认怂</h3>
+            <p>资料里没有的，它不会硬编。明确说“没有”，并建议问辅导员或查官方通知。</p>
+            <div class="q">“宿舍能不能养猫？” → 资料里没有，不编</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="trust">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Why Trust It</div>
+          <h2>不是“更会聊”，而是“更能核对”</h2>
+          <p>一个校园问答工具，最重要的不是文采，而是你能否沿着答案回到原文。</p>
+        </div>
+        <div class="trust">
+          <div class="card"><div class="icon">📎</div><h3>每条答案带出处</h3><p>文件名 + 第几块，点开就能看原文摘录。</p></div>
+          <div class="card"><div class="icon orange">🛑</div><h3>不知道就拒答</h3><p>资料里没有，就明确说没有，不用常识补全。</p></div>
+          <div class="card"><div class="icon">🕒</div><h3>过期会提醒</h3><p>资料带“仅适用于某年级”的声明，回答会主动提示。</p></div>
+          <div class="card"><div class="icon">🔒</div><h3>隐私会忽略</h3><p>不透露、不推测姓名、学号、手机号、群聊内容。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">How It Works</div>
+          <h2>一条朴素的 RAG 流水线</h2>
+          <p>不训练模型、不需要显卡；先把相关资料找出来，再让模型照着资料回答。</p>
+        </div>
+        <div class="flow">
+          <div class="flow-step"><span class="n">STEP 01</span><b>中文分词</b><span>jieba + 高校专有词表：转专业、绩点、床位、军训…</span></div>
+          <div class="flow-step"><span class="n">STEP 02</span><b>检索</b><span>倒排索引 + TF-IDF + 同义词/来源加权，取 top-5。</span></div>
+          <div class="flow-step"><span class="n">STEP 03</span><b>组装 Prompt</b><span>5 块资料 + 问题 + “只能依据资料”的规则。</span></div>
+          <div class="flow-step"><span class="n">STEP 04</span><b>带出处回答</b><span>DeepSeek 生成；前端展示来源卡片和原文。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="data">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Data & Privacy</div>
+          <h2>公开演示版，只使用公开官方资料</h2>
+          <p>完整版用于个人学习；公开版去掉了社团通讯录、班级群、饭协榜单、个人文档等含隐私的内容。</p>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <h3>公开演示版</h3>
+            <p>可随包分发、可公开部署的脱敏知识库</p>
+            <div class="data-grid">
+              <div class="data"><b>117 份</b><span>公开官方文件</span></div>
+              <div class="data"><b>3018 块</b><span>知识库切块</span></div>
+              <div class="data"><b>7 种</b><span>支持格式</span></div>
+              <div class="data"><b>10 处</b><span>手机号已脱敏</span></div>
+            </div>
+            <p class="fine">完整版：136 份 / 3412 块（仅本地，不随包分发）</p>
+          </div>
+          <div class="card privacy-card">
+            <div class="icon">🛡️</div>
+            <h3>隐私与边界</h3>
+            <p>公开演示版不包含学生姓名、学号、班级群、社团通讯录；回答也会忽略资料中的个人隐私。</p>
+            <div class="list">
+              <div><i>✓</i><span>手机号统一替换为「手机号已脱敏」</span></div>
+              <div><i>✓</i><span>资料时效性由回答主动提醒</span></div>
+              <div><i>✓</i><span>不编日期、金额、电话、比例</span></div>
+              <div><i>✓</i><span>公开包不含 .env / .git / 原始资料</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">60s Demo</div>
+          <h2>看它怎么查、怎么认怂</h2>
+          <p>60 秒演示：真实录屏操作 + AI 配音。看三个瞬间：检索、出处、拒答。</p>
+        </div>
+
+        <div class="video-shell" id="videoShell">
+          <div class="video-placeholder">
+            <button class="play" type="button" data-video aria-label="播放演示视频">▶</button>
+            <b>60 秒演示视频</b>
+            <small>把 MP4 放到 <code>h5/video/demo.mp4</code>，或在 CONFIG.videoUrl 填视频链接</small>
+          </div>
+        </div>
+
+        <div class="demo-points">
+          <div><b>01 · 先检索</b>问“转专业需要什么条件”，先找到学生手册，再回答。</div>
+          <div><b>02 · 有出处</b>展开「依据的资料」，能看到文件名和原文摘录。</div>
+          <div><b>03 · 会认怂</b>问“宿舍能不能养猫”，直接说资料里没有，不编。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="cta">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>现在，去问一个真实的问题</h2>
+            <p>转专业、军训、宿舍、奖学金——打开就能问，答案会告诉你从哪来。</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-primary" type="button" data-app>立即体验 <span aria-hidden="true">↗</span></button>
+            <button class="btn btn-ghost" type="button" data-video>看 60 秒演示</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>
+        <b>新生百科 · 重大学习生活 AI 顾问</b><br />
+        重庆大学 AI 开学季 · 校园智能体创新挑战赛 / 大一新生赛道<br />
+        重庆大学 2026 级本科生 · 个人参赛
+      </div>
+      <div class="footer-links">
+        <button type="button" data-copy>复制本页链接</button>
+        <a href="#top">回到顶部</a>
+        <a href="#demo">60 秒演示</a>
+        <a href="#" id="repoLink" hidden target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="wrap" style="margin-top:14px;color:#94A3B8;font-size:11.5px;">
+      本页是 H5 展示页，实际交互在「在线体验」；公开演示版仅使用公开官方资料，资料以学校最新通知为准。
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="mobile-cta">
+    <button class="btn btn-primary" type="button" data-app>在线体验</button>
+    <button class="btn btn-ghost" type="button" data-video>看演示</button>
+  </div>
+
+  <script>
+    /* ============================================================
+       部署前改这里：
+       appUrl   = 公开 Streamlit 地址（如 https://xxx.streamlit.app）
+       videoUrl = 视频地址（如 video/demo.mp4 或外部链接）
+       repoUrl  = GitHub 地址
+       ============================================================ */
+    const CONFIG = {
+      appUrl: "",
+      videoUrl: "",
+      repoUrl: "",
+    };
+
+    const toast = document.getElementById("toast");
+    let toastTimer = null;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    function goApp() {
+      if (CONFIG.appUrl) {
+        window.open(CONFIG.appUrl, "_blank", "noopener");
+      } else {
+        showToast("在线体验部署中，先看 60 秒演示 ↓");
+        document.getElementById("demo").scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    function openVideo() {
+      if (!CONFIG.videoUrl) {
+        showToast("视频还没上传：把 MP4 放到 h5/video/demo.mp4，或在 CONFIG.videoUrl 填链接");
+        return;
+      }
+      window.open(CONFIG.videoUrl, "_blank", "noopener");
+    }
+
+    document.querySelectorAll("[data-app]").forEach((el) => el.addEventListener("click", goApp));
+    document.querySelectorAll("[data-video]").forEach((el) => el.addEventListener("click", openVideo));
+
+    document.querySelectorAll("[data-copy]").forEach((el) => {
+      el.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast("本页链接已复制");
+        } catch (e) {
+          showToast("复制失败，请手动复制地址栏");
+        }
+      });
+    });
+
+    // 如果填了视频链接，自动替换视频占位区
+    (function renderVideo() {
+      if (!CONFIG.videoUrl) return;
+      const shell = document.getElementById("videoShell");
+      if (/\.mp4($|\?)/i.test(CONFIG.videoUrl)) {
+        shell.innerHTML = '<video controls playsinline preload="metadata" src="' + CONFIG.videoUrl + '"></video>';
+      } else {
+        shell.innerHTML = '<div class="video-placeholder"><b>60 秒演示视频</b>' +
+          '<a class="video-link" href="' + CONFIG.videoUrl + '" target="_blank" rel="noopener">打开视频 ↗</a></div>';
+      }
+    })();
+
+    // GitHub 链接
+    (function renderRepo() {
+      if (!CONFIG.repoUrl) return;
+      const a = document.getElementById("repoLink");
+      a.href = CONFIG.repoUrl;
+      a.hidden = false;
+    })();
+  </script>
+</body>
+</html>
