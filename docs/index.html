@@ -376,7 +376,7 @@
   <!-- ============================================================
        部署前只需要改下面 CONFIG 里的 3 个链接：
        1) appUrl   = 公开的 Streamlit 在线体验地址
-       2) videoUrl = 60 秒视频地址（本地 video/demo.mp4 或外部链接）
+       2) videoUrl = 45 秒视频地址（本地 video/demo.mp4 或外部链接）
        3) repoUrl  = GitHub 仓库地址
        其余内容一般不用改。
        ============================================================ -->
@@ -390,7 +390,7 @@
         <a href="#problem">解决什么问题</a>
         <a href="#scenes">三个场景</a>
         <a href="#trust">为什么可信</a>
-        <a href="#demo">60 秒演示</a>
+        <a href="#demo">45 秒演示</a>
       </div>
       <button class="btn btn-primary" type="button" data-app>在线体验 <span aria-hidden="true">↗</span></button>
     </div>
@@ -403,12 +403,12 @@
           <span class="eyebrow"><span class="dot"></span> 重庆大学 AI 开学季 · 大一新生赛道 · H5 / Web 应用</span>
           <h1>把上百份官方资料，<br />变成一个<span>会认出处的 AI 学业顾问</span></h1>
           <p class="lede">
-            新生百科读学生手册、培养方案、转专业细则；
+            新生百科读学生手册、培养方案、选课通知；
             <b>每个回答标出来源</b>，资料里没有的，它会直接说“没有”。
           </p>
           <div class="hero-actions">
             <button class="btn btn-primary" type="button" data-app>立即体验 <span aria-hidden="true">↗</span></button>
-            <button class="btn btn-ghost" type="button" data-video>看 60 秒演示 <span aria-hidden="true">▶</span></button>
+            <button class="btn btn-ghost" type="button" data-video>看 45 秒演示 <span aria-hidden="true">▶</span></button>
             <span class="note">手机 / 电脑都能用</span>
           </div>
           <div class="stats" aria-label="项目数据">
@@ -428,13 +428,12 @@
                 <div class="phone-live"><span class="dot"></span> 示例界面</div>
               </div>
               <div class="chat">
-                <div class="bubble user">转专业需要什么条件？</div>
+                <div class="bubble user">虎溪校区宿舍床多大？</div>
                 <div class="bubble bot">
-                  <b>先满足这些基本条件：</b><br />
-                  1. 有本校学籍，在校期间未受过处分；<br />
-                  2. 在原专业学习超过一学期；<br />
-                  3. 只能申请填报一个专业。
-                  <span class="sources">📎 依据：《重庆大学本科学生手册》第 12–13 条</span>
+                  <b>虎溪校区宿舍床位尺寸：</b><br />
+                  标准床长约 2.0 米、宽约 0.9 米；<br />
+                  不同园区略有差异，以尺寸表为准。
+                  <span class="sources">📎 依据：《重庆大学虎溪校区宿舍床位尺寸表》</span>
                 </div>
                 <div class="bubble user">宿舍能不能养猫？</div>
                 <div class="bubble bot refusal">
@@ -443,7 +442,7 @@
                   <span class="sub">没有资料依据，就不编。</span>
                 </div>
               </div>
-              <div class="phone-input"><span>问点什么，比如：转专业…</span><span>↑</span></div>
+              <div class="phone-input"><span>问点什么，比如：军训…</span><span>↑</span></div>
             </div>
           </div>
           <p class="phone-caption">界面示意 · 实际以在线体验为准</p>
@@ -456,13 +455,13 @@
         <div class="section-head">
           <div class="kicker">The Problem</div>
           <h2>信息都在，但没有人知道该翻哪一份</h2>
-          <p>新生最大的困难不是“没有信息”，而是信息散在几十份培养方案、几百页学生手册和每个学院各一份的转专业细则里。</p>
+          <p>新生最大的困难不是“没有信息”，而是信息散在几十份培养方案、几百页学生手册和每个学院各一份的通知里。</p>
         </div>
         <div class="grid-3">
           <article class="card">
             <div class="icon">🔎</div>
             <h3>找不到原文</h3>
-            <p>“转专业要什么条件？” 答案可能在学生手册，也可能在某个学院的细则里。</p>
+            <p>“宿舍床多大？” 答案可能在学生手册，也可能藏在某张附表里。</p>
             <div class="q">问学长学姐 → 得到的是经验，不是原文</div>
           </article>
           <article class="card">
@@ -474,7 +473,7 @@
           <article class="card">
             <div class="icon">⏳</div>
             <h3>资料还会过期</h3>
-            <p>2025 年的转专业细则，对 2026 级很可能已经变了；可怕的是模型不知道它过期。</p>
+            <p>2025 年的旧通知，对 2026 级很可能已经变了；可怕的是模型不知道它过期。</p>
             <div class="q">旧版规则 + 不提醒 = 更危险</div>
           </article>
         </div>
@@ -491,14 +490,14 @@
         <div class="grid-3">
           <article class="card">
             <span class="badge-num">01</span>
-            <h3>转专业</h3>
-            <p>条件、时间线、能填几个志愿、目标学院细则，一次讲清，并标出原文位置。</p>
-            <div class="q">“转专业能填几个志愿？” → 只允许填报一个专业</div>
+            <h3>军训 / 报到</h3>
+            <p>集合时间、连队、服装要求、军训准备，一次讲清，并标出原文位置。</p>
+            <div class="q">“军训要准备什么？” → 按通知列清单</div>
           </article>
           <article class="card">
             <span class="badge-num">02</span>
-            <h3>报到 / 宿舍</h3>
-            <p>军训准备、宿舍床尺寸、校园卡、选课通知——多格式资料也能被读成能回答的句子。</p>
+            <h3>宿舍 / 选课</h3>
+            <p>宿舍床尺寸、校园卡、选课通知——多格式资料也能被读成能回答的句子。</p>
             <div class="q">“虎溪校区宿舍床多大？” → 直接给尺寸表</div>
           </article>
           <article class="card">
@@ -535,7 +534,7 @@
           <p>不训练模型、不需要显卡；先把相关资料找出来，再让模型照着资料回答。</p>
         </div>
         <div class="flow">
-          <div class="flow-step"><span class="n">STEP 01</span><b>中文分词</b><span>jieba + 高校专有词表：转专业、绩点、床位、军训…</span></div>
+          <div class="flow-step"><span class="n">STEP 01</span><b>中文分词</b><span>jieba + 高校专有词表：军训、绩点、床位、奖学金…</span></div>
           <div class="flow-step"><span class="n">STEP 02</span><b>检索</b><span>倒排索引 + TF-IDF + 同义词/来源加权，取 top-5。</span></div>
           <div class="flow-step"><span class="n">STEP 03</span><b>组装 Prompt</b><span>5 块资料 + 问题 + “只能依据资料”的规则。</span></div>
           <div class="flow-step"><span class="n">STEP 04</span><b>带出处回答</b><span>DeepSeek 生成；前端展示来源卡片和原文。</span></div>
@@ -553,7 +552,7 @@
         <div class="split">
           <div class="panel">
             <h3>公开演示版</h3>
-            <p>可随包分发、可公开部署的脱敏知识库</p>
+            <p>这是一个自带资料库的 RAG 网站：资料由部署者自己存放并构建；公开演示版已预置 117 份，打开即可用。</p>
             <div class="data-grid">
               <div class="data"><b>117 份</b><span>公开官方文件</span></div>
               <div class="data"><b>3018 块</b><span>知识库切块</span></div>
@@ -580,21 +579,21 @@
     <section class="section" id="demo">
       <div class="wrap">
         <div class="section-head">
-          <div class="kicker">60s Demo</div>
+          <div class="kicker">45s Demo</div>
           <h2>看它怎么查、怎么认怂</h2>
-          <p>60 秒演示：真实录屏操作 + AI 配音。看三个瞬间：检索、出处、拒答。</p>
+          <p>45 秒演示：真实录屏操作 + AI 配音。看三个瞬间：检索、出处、拒答。</p>
         </div>
 
         <div class="video-shell" id="videoShell">
           <div class="video-placeholder">
             <button class="play" type="button" data-video aria-label="播放演示视频">▶</button>
-            <b>60 秒演示视频</b>
-            <small>把 MP4 放到 <code>h5/video/demo.mp4</code>，或在 CONFIG.videoUrl 填视频链接</small>
+            <b>45 秒演示视频</b>
+            <small>演示视频随作品提交；也可以直接在线体验。</small>
           </div>
         </div>
 
         <div class="demo-points">
-          <div><b>01 · 先检索</b>问“转专业需要什么条件”，先找到学生手册，再回答。</div>
+          <div><b>01 · 先检索</b>问“军训要准备什么”，先找到军训通知，再回答。</div>
           <div><b>02 · 有出处</b>展开「依据的资料」，能看到文件名和原文摘录。</div>
           <div><b>03 · 会认怂</b>问“宿舍能不能养猫”，直接说资料里没有，不编。</div>
         </div>
@@ -606,11 +605,11 @@
         <div class="cta">
           <div>
             <h2>现在，去问一个真实的问题</h2>
-            <p>转专业、军训、宿舍、奖学金——打开就能问，答案会告诉你从哪来。</p>
+            <p>军训、宿舍、奖学金、选课——打开就能问，答案会告诉你从哪来。</p>
           </div>
           <div class="actions">
             <button class="btn btn-primary" type="button" data-app>立即体验 <span aria-hidden="true">↗</span></button>
-            <button class="btn btn-ghost" type="button" data-video>看 60 秒演示</button>
+            <button class="btn btn-ghost" type="button" data-video>看 45 秒演示</button>
           </div>
         </div>
       </div>
@@ -627,7 +626,7 @@
       <div class="footer-links">
         <button type="button" data-copy>复制本页链接</button>
         <a href="#top">回到顶部</a>
-        <a href="#demo">60 秒演示</a>
+        <a href="#demo">45 秒演示</a>
         <a href="#" id="repoLink" hidden target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
@@ -650,11 +649,11 @@
        videoUrl = 视频地址（如 video/demo.mp4 或外部链接）
        repoUrl  = GitHub 地址
        ============================================================ */
-  const CONFIG = {
-  appUrl: "https://xinsheng-baike-ntoor3pxgrk4oym8w8gj7x.streamlit.app",
-  videoUrl: "",
-  repoUrl: "https://github.com/freenight000/xinsheng-baike",
-};
+    const CONFIG = {
+      appUrl: "https://xinsheng-baike-ntoor3pxgrk4oym8w8gj7x.streamlit.app",
+      videoUrl: "https://freenight000.github.io/xinsheng-baike/video/demo.mp4",
+      repoUrl: "https://github.com/freenight000/xinsheng-baike",
+    };
 
     const toast = document.getElementById("toast");
     let toastTimer = null;
@@ -669,7 +668,7 @@
       if (CONFIG.appUrl) {
         window.open(CONFIG.appUrl, "_blank", "noopener");
       } else {
-        showToast("在线体验部署中，先看 60 秒演示 ↓");
+        showToast("在线体验部署中，先看 45 秒演示 ↓");
         document.getElementById("demo").scrollIntoView({ behavior: "smooth" });
       }
     }
@@ -703,7 +702,7 @@
       if (/\.mp4($|\?)/i.test(CONFIG.videoUrl)) {
         shell.innerHTML = '<video controls playsinline preload="metadata" src="' + CONFIG.videoUrl + '"></video>';
       } else {
-        shell.innerHTML = '<div class="video-placeholder"><b>60 秒演示视频</b>' +
+        shell.innerHTML = '<div class="video-placeholder"><b>45 秒演示视频</b>' +
           '<a class="video-link" href="' + CONFIG.videoUrl + '" target="_blank" rel="noopener">打开视频 ↗</a></div>';
       }
     })();
